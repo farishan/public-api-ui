@@ -12,6 +12,7 @@
   .entries {
     display: flex;
     flex-wrap: wrap;
+    flex-wrap: wrap;
     margin: 0 -0.5rem;
   }
 </style>

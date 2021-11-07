@@ -4,7 +4,7 @@
 
 <header class="header">
   <div class="container--fluid">
-    <div class="flex flex-wrap justify-between">
+    <div class="header__flexbox flex flex-wrap justify-between">
       <div class="flex flex-wrap items-center">
         <h1>
           Public APIs
@@ -39,12 +39,16 @@
   .header h1 {
     padding-right: 1rem;
     margin-right: 1rem;
-    border-right: 1px solid #666;
+    margin-bottom: 2rem;
   }
 
   .header h2 {
     font-size: 1rem;
     font-weight: 400;
+  }
+
+  .header__flexbox {
+    flex-wrap: nowrap;
   }
 
   .api-status {
@@ -55,5 +59,12 @@
     margin-left: 4px;
     background-color: darkred;
     color: #fff;
+  }
+
+  @media screen and (min-width: 768px) {
+    .header h1 {
+      margin-bottom: 0;
+      border-right: 1px solid #666;
+    }
   }
 </style>

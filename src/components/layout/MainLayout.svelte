@@ -10,16 +10,34 @@
 <style>
   .main-wrapper {
     margin-top: 2rem;
+    flex-wrap: wrap;
   }
 
   .main {
-    padding-right: 2rem;
     width: 100%;
+    order: 2;
   }
 
-  @media screen and (min-width: 1024px) {
+  .sidebar {
+    order: 1;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    .main-wrapper {
+      flex-wrap: nowrap;
+    }
+
+    .main {
+      padding-right: 2rem;
+      order: 1;
+    }
+
     .sidebar {
-      min-width: 25%;
+      order: 2;
+      width: 25%;
+      margin-bottom: 0;
     }
   }
 </style>

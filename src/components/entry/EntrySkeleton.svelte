@@ -52,10 +52,23 @@
 
 <style>
   .entry {
+    /* border: 1px solid #666; */
     padding: 0 8px 8px;
-    width: calc(33.3333% - 1rem);
+    width: 100%;
     margin: 0 0.5rem 1rem;
     background-color: #fff;
+  }
+
+  @media screen and (min-width: 768px) {
+    .entry {
+      width: calc(50% - 1rem);
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .entry {
+      width: calc(33.3333% - 1rem);
+    }
   }
 
   .entry.recommended {
