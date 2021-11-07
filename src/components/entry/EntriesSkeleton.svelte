@@ -3,7 +3,7 @@
 </script>
 
 <div class="entries">
-  {#each Array(24) as _, i}
+  {#each Array(12) as _, i}
     <EntrySkeleton />
   {/each}
 </div>
