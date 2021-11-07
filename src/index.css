@@ -1,0 +1,121 @@
+/* Default tags override
+___________________________________________________________________________________ */
+
+a {
+  color: #333333;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #444444;
+}
+
+body.dark a {
+  color: #ccc;
+}
+
+body.dark a:visited {
+  color: #bbb;
+}
+
+body.dark a:visited:hover {
+  color: #fff !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+input,
+select {
+  padding: 13px 15px;
+}
+
+/* Utilities
+___________________________________________________________________________________ */
+
+.container,
+.container--fluid {
+  padding: 0 1rem;
+}
+
+.container {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.select-none {
+  user-select: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.cursor-pointer,
+input[type='checkbox'],
+button,
+select {
+  cursor: pointer;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.tapable {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+.relative {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.top-0 {
+  top: 0;
+}
+
+/* Components
+___________________________________________________________________________________ */
+
+body.dark .entry {
+  background-color: #111;
+}
+
+body.dark .entry__description {
+  color: #ddd;
+}
