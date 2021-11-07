@@ -22,56 +22,48 @@
     ? 'not-recommended'
     : ''}"
 >
-  <h4 class="entry__title flex items-center justify-between">
+  <h3 class="entry__title flex items-center justify-between">
     <a href={entry.Link} target="_blank" rel="noopener noreferrer"
       >{entry.API}</a
     ><small class="entry__category">{entry.Category}</small>
-  </h4>
+  </h3>
   <p class="entry__description" title={entry.Description}>
     {entry.Description.length > 30
       ? entry.Description.substr(0, 30) + '...'
       : entry.Description}
   </p>
-  <div class="flex items-center" style="font-size:0.75rem">
-    <div
-      class="flex items-center"
-      title="Auth: {entry.Auth === '' ? 'No authorization' : entry.Auth}"
-    >
-      <span
-        style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{entry.Auth ===
-        ''
-          ? 'green'
-          : 'red'};"
-      />
-      <!-- <span style="margin:0 2px 0 4px">{entry.Auth === '' ? 'Auth' : 'Need ' + entry.Auth}</span> -->
-      <span style="margin:0 2px 0 4px">Auth</span>
-      <StatusIcon truthy={entry.Auth === ''} />
-    </div>
-    <div
-      class="flex items-center"
-      title="HTTPS: {entry.HTTPS ? 'Yes' : 'No'}"
-      style="margin:0 8px; padding: 0 8px; border-right: 1px solid; border-left: 1px solid;"
-    >
-      <span
-        style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{entry.HTTPS
-          ? 'green'
-          : 'red'};"
-      />
-      <span style="margin:0 2px 0 4px">HTTPS</span>
-      <StatusIcon truthy={entry.HTTPS} />
-    </div>
-    <div class="flex items-center" title="CORS: {entry.Cors}">
-      <span
-        style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{entry.Cors ===
-        'yes'
-          ? 'green'
-          : entry.Cors === 'no'
-          ? 'red'
-          : 'orange'};"
-      />
-      <span style="margin:0 2px 0 4px">CORS</span>
-      <StatusIcon truthy={entry.Cors === 'yes'} />
-    </div>
+  <div
+    class="flex items-center"
+    style="font-size:0.75rem"
+    title={`Auth: ${entry.Auth} | HTTPS: ${entry.HTTPS} | Cors: ${entry.Cors}`}
+  >
+    <span
+      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{entry.Auth ===
+      ''
+        ? 'green'
+        : 'red'};"
+    />
+    <span style="margin:0 2px 0 4px">Auth</span>
+    <StatusIcon truthy={entry.Auth === ''} />
+
+    <span
+      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{entry.HTTPS
+        ? 'green'
+        : 'red'};"
+    />
+    <span style="margin:0 2px 0 4px">HTTPS</span>
+    <StatusIcon truthy={entry.HTTPS} />
+
+    <span
+      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{entry.Cors ===
+      'yes'
+        ? 'green'
+        : entry.Cors === 'no'
+        ? 'red'
+        : 'orange'};"
+    />
+    <span style="margin:0 2px 0 4px">CORS</span>
+    <StatusIcon truthy={entry.Cors === 'yes'} />
   </div>
 </article>
 
@@ -111,6 +103,8 @@
 
   .entry__category {
     font-weight: 400;
+    padding-left: 4px;
+    text-align: right;
   }
 
   .entry__description {

@@ -123,11 +123,6 @@
   });
 </script>
 
-<svelte:head>
-	<title>Public APIs User Interface</title>
-	<html lang="en" />
-</svelte:head>
-
 <Header />
 
 <MainLayout>

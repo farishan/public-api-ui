@@ -13,40 +13,30 @@
 </script>
 
 <article class="entry recommended">
-  <h4 class="entry__title grey flex items-center justify-between">
+  <h3 class="entry__title grey flex items-center justify-between">
     <span>{entry.API}</span><small class="entry__category grey"
       >{entry.Category}</small
     >
-  </h4>
+  </h3>
   <p class="entry__description grey" title={entry.Description}>
     {entry.Description.substr(0, 30) + '...'}
   </p>
-  <div class="flex items-center" style="font-size:0.75rem">
-    <div class="flex items-center grey" title="Auth">
-      <span
-        style="display:inline-block;width:8px;height:8px;border-radius:50%;background:green;"
-      />
-      <span style="margin:0 2px 0 4px">Auth</span>
-      <StatusIcon truthy={entry.Auth === ''} />
-    </div>
-    <div
-      class="flex items-center grey"
-      title="HTTPS: {entry.HTTPS ? 'Yes' : 'No'}"
-      style="margin:0 8px; padding: 0 8px; border-right: 1px solid; border-left: 1px solid;"
-    >
-      <span
-        style="display:inline-block;width:8px;height:8px;border-radius:50%;background:green;"
-      />
-      <span style="margin:0 2px 0 4px">HTTPS</span>
-      <StatusIcon truthy={entry.HTTPS} />
-    </div>
-    <div class="flex items-center grey" title="CORS: {entry.Cors}">
-      <span
-        style="display:inline-block;width:8px;height:8px;border-radius:50%;background:green;"
-      />
-      <span style="margin:0 2px 0 4px">CORS</span>
-      <StatusIcon truthy={entry.Cors === 'yes'} />
-    </div>
+  <div class="flex items-center grey" style="font-size:0.75rem">
+    <span
+      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:green;"
+    />
+    <span style="margin:0 2px 0 4px">Auth</span>
+    <StatusIcon truthy={entry.Auth === ''} />
+    <span
+      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:green;"
+    />
+    <span style="margin:0 2px 0 4px">HTTPS</span>
+    <StatusIcon truthy={entry.HTTPS} />
+    <span
+      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:green;"
+    />
+    <span style="margin:0 2px 0 4px">CORS</span>
+    <StatusIcon truthy={entry.Cors === 'yes'} />
   </div>
 </article>
 
@@ -82,6 +72,8 @@
 
   .entry__category {
     font-weight: 400;
+    padding-left: 4px;
+    text-align: right;
   }
 
   .entry__description {
