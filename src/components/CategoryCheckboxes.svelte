@@ -1,30 +1,38 @@
 <script>
-  import fetcher from '../../scripts/fetcher';
-  import CheckboxWithLabel from './CheckboxWithLabel.svelte';
+  import fetcher from "../../scripts/fetcher";
+  import CheckboxWithLabel from "./CheckboxWithLabel.svelte";
 
-  const KEY = 'PUBLIC_API_CATEGORIES';
+  const KEY = "PUBLIC_API_CATEGORIES";
 
   let defaultCategories = [];
-  let keyword = '';
+  let keyword = "";
+
+  if (sessionStorage.getItem(KEY)) {
+    const savedCategories = JSON.parse(sessionStorage.getItem(KEY));
+    if (savedCategories) {
+      defaultCategories = savedCategories;
+      categories = defaultCategories;
+    } else {
+      console.log("Something went wrong", { savedCategories });
+    }
+  } else {
+    fetcher("/categories", function (res) {
+      if (res && res.categories) {
+        sessionStorage.setItem(KEY, JSON.stringify(res.categories));
+        defaultCategories = res.categories;
+        categories = defaultCategories;
+      } else {
+        console.log("Something went wrong", { res });
+      }
+    });
+  }
+
   $: categories =
-    keyword === ''
+    keyword === ""
       ? defaultCategories
       : defaultCategories.filter((category) =>
           category.toLowerCase().includes(keyword.toLowerCase())
         );
-
-  if (sessionStorage.getItem(KEY)) {
-    defaultCategories = JSON.parse(sessionStorage.getItem(KEY));
-    categories = defaultCategories;
-  } else {
-    fetcher('/categories', function (res) {
-      if (res) {
-        sessionStorage.setItem(KEY, JSON.stringify(res));
-        defaultCategories = res;
-        categories = defaultCategories;
-      }
-    });
-  }
 </script>
 
 <div class="category-widget">
@@ -35,9 +43,11 @@
     bind:value={keyword}
   />
   <div class="category-checkboxes" id="categoryOptions">
-    {#each categories as category}
-      <CheckboxWithLabel name="categories" {category} />
-    {/each}
+    {#if categories}
+      {#each categories as category}
+        <CheckboxWithLabel name="categories" {category} />
+      {/each}
+    {/if}
   </div>
 </div>
 

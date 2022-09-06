@@ -2,6 +2,7 @@
   import './index.css';
   import './normalize.css';
   import fetcher from '../scripts/fetcher';
+  import debounce from '../scripts/debounce';
   import Header from './components/Header.svelte';
   import Entries from './components/entry/Entries.svelte';
   import EntriesSkeleton from './components/entry/EntriesSkeleton.svelte';
@@ -12,21 +13,13 @@
   import { entries, selectedCategories } from '../scripts/store';
 
   const DEFAULT_QUERY = '?auth=null&cors=yes&https=true';
-  let isFetching = true;
+  /* @TODO define what cache is */
   const cache = {
     init: []
   };
-  let keyword = '';
 
-  function debounce(func, timeout = 500) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, timeout);
-    };
-  }
+  let isFetching = true;
+  let keyword = '';
 
   const debouncedGetByKeyword = debounce((keyword) => {
     const onlyWhitespace = !keyword.replace(/\s/g, '').length;
@@ -60,12 +53,6 @@
         });
     }
   });
-
-  $: if (keyword === '') {
-    entries.set(cache.init);
-  } else {
-    debouncedGetByKeyword(keyword);
-  }
 
   const debouncedGetByCategory = debounce((cacheKeys) => {
     const promises = [];
@@ -106,14 +93,8 @@
     }
   });
 
-  selectedCategories.subscribe((value) => {
-    if (isFetching === false) {
-      debouncedGetByCategory(value);
-    }
-  });
-
+  /* Initial data fetch */
   fetcher('/entries' + DEFAULT_QUERY, function (res) {
-    // fetcher('/random', function (res) {
     if (res && res.entries) {
       cache.init = res.entries;
       entries.set(res.entries);
@@ -121,6 +102,20 @@
 
     isFetching = false;
   });
+
+  /* Listen to category changes */
+  selectedCategories.subscribe((value) => {
+    if (isFetching === false) {
+      debouncedGetByCategory(value);
+    }
+  });
+
+  /* Listen to keyword changes */
+  $: if (keyword === '') {
+    entries.set(cache.init);
+  } else {
+    debouncedGetByKeyword(keyword);
+  }
 </script>
 
 <Header />
